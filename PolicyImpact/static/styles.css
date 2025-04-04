@@ -1,0 +1,74 @@
+General Styling
+body {
+    background-color: #f8f9fa;
+    transition: background 0.3s, color 0.3s;
+}
+
+.navbar {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.container {
+    padding-top: 20px;
+}
+
+/* Dark Mode */
+.dark-mode {
+    background-color: #121212;
+    color: #ffffff;
+}
+
+.dark-mode .navbar {
+    background-color: #1f1f1f;
+}
+
+/* Model Selection Grid */
+.model-card {
+    display: block;
+    text-align: center;
+    padding: 15px;
+    background: white;
+    border-radius: 10px;
+    transition: 0.3s;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.model-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Chat Box */
+#chat-box {
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    max-height: 400px;
+    overflow-y: auto;
+    border: 1px solid #ddd;
+}
+
+#chat-content div {
+    padding: 10px;
+    border-radius: 10px;
+    margin: 5px 0;
+    max-width: 75%;
+}
+
+.text-start {
+    background-color: #e3f2fd;
+    align-self: flex-start;
+}
+
+.text-end {
+    background-color: #d1c4e9;
+    align-self: flex-end;
+}
+
+/* Smooth Dark Mode Toggle */
+.toggle-switch {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+}
