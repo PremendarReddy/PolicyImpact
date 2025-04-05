@@ -1,0 +1,52 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>PolicyImpact Chat</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'chat.css' %}">
+</head>
+<body>
+<div class="header">
+  <!-- <h1 class="text-center">🚀 PolicyImpact AI</h1> -->
+    <h2 class="text-center mb-4">💬 PolicyImpact AI Assistant</h2>
+<div>
+<div class="chat-container">
+
+  <div id="chat-box">
+    {% for res in responses %}
+    <div class="chat-message {% if res.sender == 'user' %}user{% else %}bot{% endif %}">
+        {{ res.text }}
+    </div>
+    {% endfor %}
+
+    <!-- Messages will appear here dynamically -->
+  </div>
+</div>
+<div class="input-container">
+    <form id="chat-form" method="post" action="{% url 'chat_process' %}">
+        {% csrf_token %}
+        <div class="input-group mt-4">
+          <input type="text" name="policy_input" id="policy_input" class="form-control" placeholder="Enter your policy..." required>
+          <button class="btn btn-success" type="submit">Analyze</button>
+        </div>
+      </form>
+</div>
+
+<script>
+  const chatBox = document.getElementById("chat-box");
+
+  // Optional: scroll to bottom
+  const scrollToBottom = () => {
+    chatBox.scrollTop = chatBox.scrollHeight;
+  };
+
+  // Auto-scroll after submit (can expand later)
+  document.getElementById("chat-form").onsubmit = () => {
+    setTimeout(scrollToBottom, 300);
+  };
+</script>
+
+</body>
+</html>
