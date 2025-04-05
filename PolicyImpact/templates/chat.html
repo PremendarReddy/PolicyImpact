@@ -15,11 +15,16 @@
 <div class="chat-container">
 
   <div id="chat-box">
-    {% for res in responses %}
     <div class="chat-message {% if res.sender == 'user' %}user{% else %}bot{% endif %}">
-        {{ res.text }}
+      {% for section, items in suggestions.items %}
+      <h3>{{ section }}</h3>
+      <ol>
+          {% for item in items %}
+              <li>{{ item|linebreaks }}</li>
+          {% endfor %}
+      </ol>
+  {% endfor %}
     </div>
-    {% endfor %}
 
     <!-- Messages will appear here dynamically -->
   </div>
