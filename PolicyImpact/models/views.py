@@ -28,9 +28,11 @@ def chat(request):
     return render(request, 'chat.html')
  
 def run_policy_nlp(policy_text):
+
     return ["Healthcare", "Taxation"]
 
 def run_economic_model(sectors):
+    
     return {
         "GDP_growth": "+2.3%",
         "inflation_rate": "-0.5%",
