@@ -1,7 +1,8 @@
+
 from django.shortcuts import render, redirect
 from openai import OpenAI
 from collections import defaultdict
-import re
+import requests,re
 
 client = OpenAI(
   api_key="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"
@@ -19,10 +20,83 @@ def generate_suggestions(prompt):
     )
     return completion.choices[0].message.content
 
+def live_news(request):
+    API_KEY = 'f730406a37954c52a9fc6d08e675b9cc'
+    selected_topic = request.GET.get('topic', 'government policy')
 
+    url = 'https://newsapi.org/v2/everything'
+    params = {
+        'q': selected_topic,
+        'language': 'en',
+        'sortBy': 'publishedAt',
+        'pageSize': 6,
+        'apiKey': API_KEY
+    }
+
+    response = requests.get(url, params=params)
+    articles = response.json().get("articles", [])
+
+    sectors = [
+        'government policy', 'agriculture', 'healthcare', 'education', 'economy',
+        'technology', 'infrastructure', 'energy', 'defense', 'environment'
+    ]
+
+    context = {
+        'articles': [
+            {
+                'title': article['title'],
+                'description': article['description'] or 'No description available.',
+                'url': article['url'],
+                'source': article['source']['name'],
+                'date': article['publishedAt'][:10]
+            }
+            for article in articles
+        ],
+        'sectors': sectors,
+        'selected_topic': selected_topic
+    }
+
+    return render(request, 'news.html', context)
+
+# def liven(request):
+#     API_KEY = 'f730406a37954c52a9fc6d08e675b9cc'
+#     url = 'https://newsapi.org/v2/everything'
+
+#     params = {
+#         'q': 'Indian government policy',
+#         'language': 'en',
+#         'sortBy': 'publishedAt',
+#         'apiKey': API_KEY,
+#         'pageSize': 20,
+#         'domains': 'economictimes.indiatimes.com,businesstoday.in,livemint.com'
+#     }
+
+#     response = requests.get(url, params=params)
+#     articles = response.json().get("articles", [])
+
+#     news_headlines = [article['title'] for article in articles]
+#     return render(request, 'home.html', {'news_headlines': news_headlines})
 
 def home(request):
-    return render(request, 'home.html')
+    render(request, 'home.html')
+    API_KEY = 'f730406a37954c52a9fc6d08e675b9cc'
+    url = 'https://newsapi.org/v2/everything'
+
+    params = {
+        'q': 'Indian government policy',
+        'language': 'en',
+        'sortBy': 'publishedAt',
+        'apiKey': API_KEY,
+        'pageSize': 20,
+        'domains': 'economictimes.indiatimes.com,businesstoday.in,livemint.com'
+    }
+
+    response = requests.get(url, params=params)
+    articles = response.json().get("articles", [])
+
+    news_headlines = [article['title'] for article in articles]
+    return render(request, 'home.html', {'news_headlines': news_headlines})
+    # return render(request, 'home.html')
 
 def chat(request):
     return render(request, 'chat.html')

@@ -1,5 +1,4 @@
-let st=document.querySelector(".darkmode");
-st.addEventListener("click",function(){
-    console.log("clicked");
-    document.body.classList.toggle("dark-mode");
-});
+const modeBtn = document.getElementById("toggleMode");
+    modeBtn.onclick = () => {
+        document.body.classList.toggle("light-mode");
+    };
