@@ -16,6 +16,30 @@
 
   <div id="chat-box">
     <div class="chat-message {% if res.sender == 'user' %}user{% else %}bot{% endif %}">
+      <h4>{{sectors}}</h4>
+      
+      <h2>Predicted Economic Impact</h2>
+
+{% for policy, indicators in results.items %}
+    <h3>{{ policy }}</h3>
+    <table border="1" cellpadding="8" cellspacing="0" style="border-collapse: collapse; margin-bottom: 20px;">
+        <thead>
+            <tr style="background-color: #f2f2f2;">
+                <th>Indicator</th>
+                <th>Value</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for key, value in indicators.items %}
+                <tr>
+                    <td>{{ key }}</td>
+                    <td>{{ value }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endfor %}
+
       {% for section, items in suggestions.items %}
       <h3>{{ section }}</h3>
       <ol>
