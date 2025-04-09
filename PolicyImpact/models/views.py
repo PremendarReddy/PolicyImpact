@@ -2,9 +2,6 @@
 from django.shortcuts import render, redirect
 from openai import OpenAI
 from collections import defaultdict
-<<<<<<< HEAD
-import requests,re
-=======
 import re
 import torch
 import json
@@ -16,12 +13,8 @@ import pandas as pd
 from sklearn.preprocessing import LabelEncoder
 from sklearn.multioutput import MultiOutputRegressor
 from sklearn.ensemble import RandomForestRegressor
+import requests
 
-
-<<<<<<< HEAD
->>>>>>> jeshwanth
-=======
->>>>>>> jeshwanth
 
 client = OpenAI(
   api_key="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"
