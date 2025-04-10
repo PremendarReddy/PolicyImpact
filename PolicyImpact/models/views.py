@@ -303,7 +303,7 @@ def chat_process(request):
         - 2 improvements for policymakers
         - The potential impact for general public
         based on our pridictions..
-        In a structured manner..!"""
+        In a structured manner..! and add some relavant emojis on at headings"""
         try:
             response = generate_suggestions(prompt)
             #final_suggestions = response.strip().split('\n')  # Split suggestions line by line
@@ -331,5 +331,8 @@ def chat_process(request):
         }))
 
     return redirect('chat')
+
+def about(request):
+    return render(request, 'about.html')
 
 

@@ -19,7 +19,7 @@
     <ul class="nav nav-pills">
       <li class="nav-item"><a href="{%url 'home'%}" class="nav-link active" aria-current="page" style="background-color:  #203a43;">Home</a></li>
       <li class="nav-item"><a href="#" class="nav-link" style="color:white;">contact</a></li>
-      <li class="nav-item"><a href="#" class="nav-link"  style="color:white;">About</a></li>
+      <li class="nav-item"><a href="{%url 'about'%}" class="nav-link"  style="color:white;">About</a></li>
       <li class="nav-item"><a href="#" class="nav-link"id="toggleMode" style="margin-right:40px;">🌙</a></li>
       
     </ul>
@@ -77,16 +77,10 @@
 </div>
 
  <script>
-    // Toggle light and dark mode for the main div
-    const toggleButton = document.getElementById('toggleMode');
-    const mainDiv = document.getElementsByClassName('.main');
-
-    toggleButton.addEventListener('click', () => {
-      if (mainDiv) {
-        mainDiv.classList.toggle('light-mode');
-      }
-      
-    });
+  const modeBtn = document.getElementById("toggleMode");
+  modeBtn.onclick = () => {
+      document.body.classList.toggle("light-mode");
+  };
   </script>
 </body>
 </html>

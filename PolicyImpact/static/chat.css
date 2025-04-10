@@ -90,3 +90,16 @@ body {
   padding-left: 20px;
 }
 
+.light-mode {
+  --bg-color: #ffffff;
+  --text-color: #222;
+  --table-border-color: #000; 
+}
+
+#toggleMode {
+  /* position: fixed; */
+  top: 20px;
+  right: 20px;
+  border: 1px solid #fff8f8;
+  border-radius: 5px;
+}
