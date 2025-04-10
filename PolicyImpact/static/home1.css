@@ -30,9 +30,11 @@ section {
 }
 
 #toggleMode {
-    position: fixed;
+    /* position: fixed; */
     top: 20px;
     right: 20px;
+    border: 1px solid #fff8f8;
+    border-radius: 5px;
 }
 
 html {
@@ -42,6 +44,9 @@ html {
 .hero {
     background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
     color: white;
+}
+.butt{
+    display: flex;
 }
 /* body {
     background-color: #f4f4f4;
@@ -92,3 +97,4 @@ html {
 .main-content {
   padding: 40px 20px;
 }
+

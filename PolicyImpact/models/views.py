@@ -93,6 +93,7 @@ def home(request):
     render(request, 'home.html')
     API_KEY = 'f730406a37954c52a9fc6d08e675b9cc'
     url = 'https://newsapi.org/v2/everything'
+    
 
     params = {
         'q': 'Indian government policy',

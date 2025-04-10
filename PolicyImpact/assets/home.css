@@ -1,0 +1,45 @@
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: var(--bg-color, #121212);
+    color: var(--text-color, #ffffff);
+    transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+.light-mode {
+    --bg-color: #ffffff;
+    --text-color: #222;
+}
+
+section {
+    padding: 80px 0;
+}
+
+.feature-icon {
+    font-size: 3rem;
+    color: #03dac6;
+}
+
+.btn-primary {
+    background-color: #03dac6;
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: #02c2b3;
+}
+
+#toggleMode {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+.hero {
+    background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+    color: white;
+}

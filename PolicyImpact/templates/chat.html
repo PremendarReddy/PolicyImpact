@@ -5,77 +5,88 @@
   <meta charset="UTF-8">
   <title>PolicyImpact Chat</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
   <link rel="stylesheet" href="{% static 'chat.css' %}">
 </head>
 <body>
-<div class="header">
-  <!-- <h1 class="text-center">🚀 PolicyImpact AI</h1> -->
-    <h2 class="text-center mb-4">💬 PolicyImpact AI Assistant</h2>
-<div>
-<div class="chat-container">
+  <div>
+  <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom" style="margin-bottom: 0rem !important;  background: linear-gradient(to right, #0f2027, #203a43, #2c5364); border-bottom:None !important; width: 100%; z-index: -1;">
+    <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+      <svg class="bi me-2" width="40" height="32" aria-hidden="true"><use xlink:href="#bootstrap"></use></svg>
+      <span class="fs-4" style="color:white">POLICYIMPACT</span>
+    </a>
 
-  <div id="chat-box">
-    <div class="chat-message {% if res.sender == 'user' %}user{% else %}bot{% endif %}">
-      <h4>{{sectors}}</h4>
+    <ul class="nav nav-pills">
+      <li class="nav-item"><a href="{%url 'home'%}" class="nav-link active" aria-current="page" style="background-color:  #203a43;">Home</a></li>
+      <li class="nav-item"><a href="#" class="nav-link" style="color:white;">contact</a></li>
+      <li class="nav-item"><a href="#" class="nav-link"  style="color:white;">About</a></li>
+      <li class="nav-item"><a href="#" class="nav-link"id="toggleMode" style="margin-right:40px;">🌙</a></li>
       
-      <h2>Predicted Economic Impact</h2>
-
-{% for policy, indicators in results.items %}
-    <h3>{{ policy }}</h3>
-    <table border="1" cellpadding="8" cellspacing="0" style="border-collapse: collapse; margin-bottom: 20px;">
-        <thead>
-            <tr style="background-color: #f2f2f2;">
-                <th>Indicator</th>
-                <th>Value</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for key, value in indicators.items %}
-                <tr>
-                    <td>{{ key }}</td>
-                    <td>{{ value }}</td>
-                </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-{% endfor %}
-
-      {% for section, items in suggestions.items %}
-      <h3>{{ section }}</h3>
-      <ol>
-          {% for item in items %}
-              <li>{{ item|linebreaks }}</li>
-          {% endfor %}
-      </ol>
-  {% endfor %}
-    </div>
-
-    <!-- Messages will appear here dynamically -->
-  </div>
+    </ul>
+  </header>
 </div>
-<div class="input-container">
+  
+  {% if results %}
+  <div class="main">
+    <h4>{{ sectors }}</h4>
+    <h2>Predicted Economic Impact</h2>
+    <div class="tables">
+      
+      {% for policy, indicators in results.items %}
+      <div>
+        <h3>{{ policy }}</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Indicator</th>
+              <th>Value</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for key, value in indicators.items %}
+              <tr>
+                <td>{{ key }}</td>
+                <td>{{ value }}</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      {% endfor %}
+    </div>
+    <div class="sugg">
+      {% for section, items in suggestions.items %}
+        <h3>{{ section }}</h3>
+        <ol>
+          {% for item in items %}
+            <li>{{ item|linebreaks }}</li>
+          {% endfor %}
+        </ol>
+      {% endfor %}
+    </div>
+  </div>
+  {% endif %}
+  <div class="input-container">
     <form id="chat-form" method="post" action="{% url 'chat_process' %}">
         {% csrf_token %}
         <div class="input-group mt-4">
           <input type="text" name="policy_input" id="policy_input" class="form-control" placeholder="Enter your policy..." required>
-          <button class="btn btn-success" type="submit">Analyze</button>
+          <button class="btn btn-success" type="submit" style="border-radius: 1rem; width:150px; margin-left: -30px;">Analyze</button>
         </div>
       </form>
 </div>
 
-<script>
-  const chatBox = document.getElementById("chat-box");
+ <script>
+    // Toggle light and dark mode for the main div
+    const toggleButton = document.getElementById('toggleMode');
+    const mainDiv = document.getElementsByClassName('.main');
 
-  // Optional: scroll to bottom
-  const scrollToBottom = () => {
-    chatBox.scrollTop = chatBox.scrollHeight;
-  };
-
-  // Auto-scroll after submit (can expand later)
-  document.getElementById("chat-form").onsubmit = () => {
-    setTimeout(scrollToBottom, 300);
-  };
-</script>
-
+    toggleButton.addEventListener('click', () => {
+      if (mainDiv) {
+        mainDiv.classList.toggle('light-mode');
+      }
+      
+    });
+  </script>
 </body>
 </html>
