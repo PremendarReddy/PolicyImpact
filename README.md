@@ -16,7 +16,8 @@ PolicyImpact is a project designed to analyze and evaluate the impact of various
    ```bash
    pip install -r requirements.txt
    ```
-
+Note:
+install git lfs for large file processing
 ## Usage
 1. Prepare your input data in the required format.
 2. Run the main script to analyze policy impacts:
