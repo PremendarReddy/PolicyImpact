@@ -1,0 +1,121 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>PolicyImpact AI - Home</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap + Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'home1.css' %}">
+</head>
+<body>
+    <div>
+        <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom" style="margin-bottom: 0rem !important;  background: linear-gradient(to right, #0f2027, #203a43, #2c5364); border-bottom:None !important; width: 100%; z-index: -1;">
+          <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+            <svg class="bi me-2" width="40" height="32" aria-hidden="true"><use xlink:href="#bootstrap"></use></svg>
+            <span class="fs-4" style="color:white">POLICYIMPACT</span>
+          </a>
+      
+          <ul class="nav nav-pills">
+            <!-- <li class="nav-item"><a href="{%url 'home'%}" class="nav-link active" aria-current="page">Home</a></li> -->
+            <li class="nav-item"><a href="#footer" class="nav-link" style="color:white;">contact</a></li>
+            <li class="nav-item"><a href="#" class="nav-link"  style="color:white;">About</a></li>
+            <li class="nav-item"><a href="#" class="nav-link"id="toggleMode" style="margin-right:40px;  border: 1px solid #fff8f8; border-radius: 5px;">🌙</a></li>
+            
+          </ul>
+        </header>
+      </div>
+
+<!-- Toggle Button -->
+
+
+<!-- Hero Section -->
+<section class="hero text-center">
+    <div class="container">
+        <h1 class="display-4">PolicyImpact AI</h1>
+        <div class="butt"></div>
+            <p class="lead mt-3">Predict the real-world impact of government policies using AI</p>
+            <a href="#features" class="btn btn-primary mt-4">Explore Features</a>
+            <a href="{% url 'chat' %}" class="btn btn-outline-light mt-4 ms-2">Get Started</a>
+            <a href="{% url 'live_news' %}" class="btn btn-primary mt-4">🔴 View Live News</a>
+        </div>
+    </div>
+</section>
+
+<!-- Features Section -->
+<section id="feature">
+    <div class="container text-center">
+        <h2 class="mb-5" id="features">Key Capabilities</h2>
+        <div class="row g-4">
+            <div class="col-md-3">
+                <i class="bi bi-chat-square-text feature-icon"></i>
+                <h5 class="mt-3">Policy Understanding</h5>
+                <p>Analyze policy text to identify key sectors and affected groups.</p>
+            </div>
+            <div class="col-md-3">
+                <i class="bi bi-graph-up-arrow feature-icon"></i>
+                <h5 class="mt-3">Economic Prediction</h5>
+                <p>Forecast GDP, inflation, and employment outcomes using ML.</p>
+            </div>
+            <div class="col-md-3">
+                <i class="bi bi-cash-coin feature-icon"></i>
+                <h5 class="mt-3">Investment Insights</h5>
+                <p>Recommend sectors to invest in and track policy-driven growth.</p>
+            </div>
+            <div class="col-md-3">
+                <i class="bi bi-gear-wide-connected feature-icon"></i>
+                <h5 class="mt-3">Policy Optimization</h5>
+                <p>Suggest better alternatives using reinforcement learning.</p>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Scrolling News Cards -->
+<div class="news-section">
+    <div class="news-title">📰 Live Indian Policy News</div>
+    <div class="d-flex overflow-hidden">
+      <div class="scrolling-news-wrapper">
+        {% for headline in news_headlines %}
+          <div class="news-card">
+            🔹 {{ headline|truncatechars:100 }}<br>
+            <a href="{% url 'live_news'%}" target="_blank" class="news-link">Read More →</a>
+          </div>
+        {% endfor %}
+        
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Welcome Section -->
+  <div class="container main-content text-center">
+    <h1>Welcome to PolicyImpact AI</h1>
+    <p>Understand government policies and their impact. Get sector-wise predictions, investment tips, and optimized suggestions!</p>
+    <a href="{% url 'chat' %}" class="btn btn-primary btn-lg mt-4">Start Analysis</a>
+  </div>
+
+<!-- Footer -->
+<div class="container" id="footer">
+  <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+    <div class="col-md-4 d-flex align-items-center">
+      <a href="/" class="mb-3 me-2 mb-md-0 text text-decoration lh-1">
+        <svg class="bi" width="30" height="24"><use xlink:href="#bootstrap"></use></svg>
+      </a>
+      <span class="text">© policyimpactai@gmail.com, Inc</span>
+    </div>
+
+    <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
+        <li class="ms-3"><a class="text" href="#"><i class="bi bi-twitter"></i></a></li>
+        <li class="ms-3"><a class="text" href="#"><i class="bi bi-instagram"></i></a></li>
+        <li class="ms-3"><a class="text" href="#"><i class="bi bi-facebook"></i></a></li>
+      </ul>
+  </footer>
+</div>
+
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="{% static 'ui.js' %}"></script>
+</body>
+</html>
